@@ -116,11 +116,11 @@ export default function TransactionsPage() {
       <DashboardSidebar />
 
       <div className="flex-1 p-6">
-        {/* Header */}
+          {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Transaction History</h1>
           <p className="text-gray-600 mt-1">View all your deposits, withdrawals, and other transactions</p>
-        </div>
+            </div>
 
         {/* Filter Tabs */}
         <div className="mb-6">
@@ -150,15 +150,15 @@ export default function TransactionsPage() {
             >
               Failed ({transactions.filter(t => t.status === "failed").length})
             </Button>
+            </div>
           </div>
-        </div>
 
-        {/* Transactions List */}
+          {/* Transactions List */}
         <Card>
           <CardContent className="p-6">
             {filteredTransactions.length > 0 ? (
-              <div className="space-y-4">
-                {filteredTransactions.map((transaction) => (
+          <div className="space-y-4">
+            {filteredTransactions.map((transaction) => (
                   <div
                     key={transaction.id}
                     className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
@@ -194,10 +194,10 @@ export default function TransactionsPage() {
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
+            ))}
+          </div>
             ) : (
-              <div className="text-center py-12">
+            <div className="text-center py-12">
                 <DollarSign className="w-12 h-12 mx-auto text-gray-400 mb-4" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">No transactions found</h3>
                 <p className="text-gray-500">
@@ -206,10 +206,10 @@ export default function TransactionsPage() {
                     : `No ${filter} transactions found.`
                   }
                 </p>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+            </div>
+          )}
+              </CardContent>
+            </Card>
       </div>
     </div>
   )

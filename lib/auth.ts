@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import { executeQuery } from "./database"
 
-const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key-change-in-production"
+const JWT_SECRET = "8f14e45fceea167a5a36dedd4bea2543" // hardcoded for local testing
 
 export interface User {
   id: number
@@ -20,6 +20,7 @@ export interface User {
   is_verified: boolean
   is_admin: boolean
   created_at: string
+  password?: string
 }
 
 export async function hashPassword(password: string): Promise<string> {

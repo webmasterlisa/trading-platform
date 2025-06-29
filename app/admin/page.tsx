@@ -404,8 +404,8 @@ export default function AdminDashboard() {
                                   setShowTransactionModal(true)
                                 }}
                               >
-                                <Eye className="w-4 h-4" />
-                              </Button>
+                              <Eye className="w-4 h-4" />
+                            </Button>
                               {transaction.status === "pending" && (
                                 <>
                                   <Button

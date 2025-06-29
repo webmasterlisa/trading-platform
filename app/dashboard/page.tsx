@@ -259,32 +259,32 @@ export default function DashboardPage() {
                 <div className="space-y-4">
                   {recentTrades.length > 0 ? (
                     recentTrades.map((trade, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                      >
-                        <div className="flex items-center space-x-3">
-                          <div className={`p-2 rounded-full ${trade.positive ? "bg-green-100" : "bg-red-100"}`}>
-                            {trade.positive ? (
-                              <ArrowUpRight className="w-4 h-4 text-green-600" />
-                            ) : (
-                              <ArrowDownRight className="w-4 h-4 text-red-600" />
-                            )}
-                          </div>
-                          <div>
-                            <div className="font-medium text-gray-900">{trade.pair}</div>
-                            <div className="text-sm text-gray-500">
-                              {trade.type} {trade.amount}
-                            </div>
-                          </div>
+                    <div
+                      key={index}
+                      className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                    >
+                      <div className="flex items-center space-x-3">
+                        <div className={`p-2 rounded-full ${trade.positive ? "bg-green-100" : "bg-red-100"}`}>
+                          {trade.positive ? (
+                            <ArrowUpRight className="w-4 h-4 text-green-600" />
+                          ) : (
+                            <ArrowDownRight className="w-4 h-4 text-red-600" />
+                          )}
                         </div>
-                        <div className="text-right">
-                          <div className={`font-medium ${trade.positive ? "text-green-600" : "text-red-600"}`}>
-                            {trade.positive ? "+" : ""}${trade.profit}
+                        <div>
+                          <div className="font-medium text-gray-900">{trade.pair}</div>
+                          <div className="text-sm text-gray-500">
+                            {trade.type} {trade.amount}
                           </div>
-                          <div className="text-xs text-gray-500">{trade.time}</div>
                         </div>
                       </div>
+                      <div className="text-right">
+                        <div className={`font-medium ${trade.positive ? "text-green-600" : "text-red-600"}`}>
+                          {trade.positive ? "+" : ""}${trade.profit}
+                        </div>
+                        <div className="text-xs text-gray-500">{trade.time}</div>
+                      </div>
+                    </div>
                     ))
                   ) : (
                     <div className="text-center py-8 text-gray-500">

@@ -1,26 +1,23 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { executeQuery } from "@/lib/database"
-import { verifyToken } from "@/lib/auth"
+import { getUserById } from "@/lib/auth"
 
 export async function GET(request: NextRequest) {
   try {
-    const token = request.cookies.get("auth-token")?.value
-    if (!token) {
+    const adminId = request.cookies.get("admin-session")?.value
+    if (!adminId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
-
-    const decoded = verifyToken(token)
-    if (!decoded || !decoded.is_admin) {
+    const adminUser = await getUserById(Number(adminId))
+    if (!adminUser || !adminUser.is_admin) {
       return NextResponse.json({ error: "Admin access required" }, { status: 403 })
     }
-
     const query = `
       SELECT id, email, first_name, last_name, username, phone, country, 
              account_type, balance, demo_balance, is_verified, is_admin, created_at
       FROM users 
       ORDER BY created_at DESC
     `
-
     const users = await executeQuery(query)
     return NextResponse.json({ users })
   } catch (error) {
@@ -31,13 +28,12 @@ export async function GET(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
-    const token = request.cookies.get("auth-token")?.value
-    if (!token) {
+    const adminId = request.cookies.get("admin-session")?.value
+    if (!adminId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
-
-    const decoded = verifyToken(token)
-    if (!decoded || !decoded.is_admin) {
+    const adminUser = await getUserById(Number(adminId))
+    if (!adminUser || !adminUser.is_admin) {
       return NextResponse.json({ error: "Admin access required" }, { status: 403 })
     }
 

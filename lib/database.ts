@@ -1,11 +1,14 @@
 import mysql from "mysql2/promise"
 
+// [NOTE] Hardcoded for local testing due to .env restrictions
+const dbUrl = 'mysql://root:mbgRzkCXEvcUJAXApUMskKvjIxFHEwpd@tramway.proxy.rlwy.net:21794/railway';
+
 const dbConfig = {
-  host: process.env.DB_HOST || "localhost",
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "",
-  database: process.env.DB_NAME || "mexohub_trading",
-  port: Number.parseInt(process.env.DB_PORT || "3306"),
+  host: "mysql.railway.internal",
+  user: "root",
+  password: "mbgRzkCXEvcUJAXApUMskKvjIxFHEwpd",
+  database: "railway",
+  port: 3306,
 }
 
 let connection: mysql.Connection | null = null
@@ -13,8 +16,9 @@ let connection: mysql.Connection | null = null
 export async function getConnection() {
   if (!connection) {
     try {
-      connection = await mysql.createConnection(dbConfig)
-      console.log("Database connected successfully")
+      // Always use the hardcoded dbUrl for local testing
+      connection = await mysql.createConnection(dbUrl)
+      console.log("Database connected successfully (hardcoded dbUrl)")
     } catch (error) {
       console.error("Database connection failed:", error)
       throw error

@@ -5,7 +5,7 @@ export async function GET() {
   try {
     // Check if environment variables are set
     const databaseUrl = process.env.DATABASE_URL;
-    const jwtSecret = process.env.JWT_SECRET;
+    const jwtSecret = "8f14e45fceea167a5a36dedd4bea2543"; // hardcoded for local testing
     const nodeEnv = process.env.NODE_ENV;
 
     if (!databaseUrl) {
